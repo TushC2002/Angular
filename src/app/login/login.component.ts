@@ -10,7 +10,7 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private router: Router) {}
+  constructor(public router: Router) {}
 
   login() {
     const users = [
@@ -21,10 +21,10 @@ export class LoginComponent {
     const user = users.find(user => user.email === this.email && user.password === this.password);
 
     if (user) {
+      localStorage.setItem('user', JSON.stringify(user)); 
       this.router.navigate(['/home']);
     } else {
       alert("Invalid email or password");
     }
   }
 }
-
